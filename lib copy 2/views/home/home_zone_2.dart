@@ -1,0 +1,97 @@
+import 'dart:ui';
+
+import 'package:flutter/material.dart';
+
+import 'package:delayed_display/delayed_display.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+
+class HomeZone2 extends StatefulWidget {
+  HomeZone2(
+      {this.deviceHeight, this.deviceWidth, this.initBlur, this.pagePadding});
+  final double? deviceHeight;
+  final double? deviceWidth;
+  final bool? initBlur;
+  final double? pagePadding;
+  @override
+  _HomeZone2State createState() => _HomeZone2State();
+}
+
+class _HomeZone2State extends State<HomeZone2> {
+  @override
+  Widget build(BuildContext context) {
+    // List<BlendMode> homeZones = [
+    //   BlendMode.saturation,
+    //   BlendMode.hue,
+    //   BlendMode.multiply,
+    //   BlendMode.overlay,
+    //   BlendMode.color,
+    //   BlendMode.difference
+    // ];
+    double titleWidth = widget.deviceWidth! / 48;
+    return Stack(
+      children: [
+        Positioned.fill(
+          child: Container(
+            height: widget.deviceHeight! / 2,
+            width: widget.deviceWidth! / 2,
+            foregroundDecoration:  BoxDecoration(
+                    color: Colors.white,
+                    backgroundBlendMode: BlendMode.saturation,
+                  ),
+          ),
+        ),
+        Container(
+          padding: EdgeInsets.all(widget.pagePadding!),
+          child: Column(
+            children: [
+              Spacer(flex: 1),
+              Row(
+                children: [
+                  Spacer(flex: 1),
+                  DelayedDisplay(
+                    slidingBeginOffset: Offset(0.15, 0.0),
+                    delay: Duration(milliseconds: 400),
+                    child: NeumorphicText(
+                      "Uriel",
+                      style: NeumorphicStyle(
+                        depth: 4,
+                        color: Colors.white,
+                      ),
+                      textStyle: NeumorphicTextStyle(
+                        fontFamily: 'Cinzel_Decorative',
+                        fontSize: 96 + titleWidth,
+                      ),
+                    ),
+                  ),
+                  Spacer(flex: 2),
+                ],
+              ),
+              Row(
+                children: [
+                  Spacer(flex: 3),
+                  DelayedDisplay(
+                    slidingBeginOffset: Offset(-0.15, 0.0),
+                    delay: Duration(milliseconds: 600),
+                    child: NeumorphicText(
+                      "Dames",
+                      style: NeumorphicStyle(
+                        depth: 4,
+                        color: Colors.white,
+                      ),
+                      textStyle: NeumorphicTextStyle(
+                        fontFamily: 'Cinzel_Decorative',
+                        fontSize: 96 + titleWidth,
+                      ),
+                    ),
+                  ),
+                  Spacer(flex: 1),
+                ],
+              ),
+              Spacer(flex: 2),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
